@@ -1,0 +1,24 @@
+# more info - https://docs.flutter.dev/platform-integration/web/web-dev-config-file
+
+# for running from terminal:
+#  --web-browser-flag "--disable-web-security" does not work in web server
+# because it does not launch application (Chrome) to disable that web-securities
+#
+# flutter run -d web-server --dart-define-from-file=config/development.json
+
+# flutter run -d chrome --web-browser-flag "--disable-web-security" --dart-define-from-file=config/development.json
+
+# flutter run -d chrome --release --web-browser-flag "--disable-web-security" --dart-define-from-file=config/development.json
+
+server:
+  #  host: "localhost" # Defines the binding address <string>
+  host: "192.168.100.93" # Defines the binding address <string>
+  port: 4040 # Specifies the port <int> for the development server
+  https:
+#    cert-path: "/path/to/cert.pem" # Path <string> to your TLS certificate
+#    cert-key-path: "/path/to/key.pem" # Path <string> to TLS certificate key
+#  headers:
+#    - name: "X-Custom-Header" # Name <string> of the HTTP header
+#      value: "MyValue" # Value <string> of the HTTP header
+#    - name: "Cache-Control"
+#      value: "no-cache, no-store, must-revalidate"

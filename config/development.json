@@ -1,0 +1,12 @@
+{
+  "ENVIRONMENT": "development",
+  "API_BASE_URL": "http://192.168.100.96:8000",
+  "DATABASE_NAME": "app_database",
+  "MAX_LAYOUT_WIDTH": 768,
+  "ALPHA": false,
+  "BETA": false,
+  "WS_KEY": "",
+  "WS_HOST": "192.168.100.96",
+  "WS_PORT": 8080,
+  "WS_TLS": false
+}

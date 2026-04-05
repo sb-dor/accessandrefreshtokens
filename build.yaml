@@ -1,0 +1,25 @@
+targets:
+  $default:
+    sources:
+      - $package$
+      - pubspec.yaml
+      - lib/**
+      - test/**
+    builders:
+      pubspec_generator:
+        options:
+          output: lib/src/common/constant/pubspec.yaml.g.dart
+      drift_dev:
+        generate_for:
+          include:
+            - lib/src/common/database/**
+        options:
+          databases:
+            app_database: lib/src/common/database/database.dart
+          data_class_to_companions: true
+          mutable_classes: false
+      #          sqlite:
+      #            version: "3.41"
+      freezed:
+        generate_for:
+          - lib/src/feature/**/controller/*.dart

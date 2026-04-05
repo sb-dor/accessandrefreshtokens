@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /Users/avaz/.pub-cache/hosted/pub.dev/dart_pusher_channels-1* -name \"*.dart\" -path \"*/lib/*\")",
+      "Bash(grep \"\\\\.dart$\")",
+      "Bash(sed -i '' 's/REVERB_HOST=\"\"localhost\"\"/REVERB_HOST=\"\"0.0.0.0\"\"/' /Users/avaz/Desktop/laravels/ws-chat/.env)",
+      "Bash(sed -i '' 's|APP_URL=http://localhost|APP_URL=http://192.168.100.96|' /Users/avaz/Desktop/laravels/ws-chat/.env)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://192.168.100.96:8000/api/auth/login -X POST -H \"Content-Type: application/json\" -d '{}')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://192.168.100.96:8080)",
+      "Bash(curl -s -X POST http://192.168.100.96:8000/api/auth/login -H \"Content-Type: application/json\" -d '{\"\"email\"\":\"\"test@test.com\"\",\"\"password\"\":\"\"password\"\"}')",
+      "Bash(curl -s -X POST http://192.168.100.96:8000/api/auth/login -H \"Content-Type: application/json\" -H \"Accept: application/json\" -d '{\"\"email\"\":\"\"test@test.com\"\",\"\"password\"\":\"\"password\"\"}')",
+      "Bash(curl -s -X POST http://192.168.100.96:8000/api/auth/register -H \"Content-Type: application/json\" -H \"Accept: application/json\" -d '{\"\"name\"\":\"\"Test User\"\",\"\"email\"\":\"\"test@test.com\"\",\"\"password\"\":\"\"password\"\"}')",
+      "Bash(TOKEN=\"3|IylQqNZRQY5OYdVkbUudNEzb4k0toUrl3y1hNM4j31266444\" curl -s -X POST http://192.168.100.96:8000/api/rooms/LOFHSPLL/messages -H \"Authorization: Bearer $TOKEN\" -H \"Content-Type: application/json\" -H \"Accept: application/json\" -d '{\"\"\"\"content\"\"\"\":\"\"\"\"ws test ping\"\"\"\"}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(''''OK:'''', d.get\\(''''id''''\\), d.get\\(''''content''''\\)\\)\" __NEW_LINE_caac8218ab3e22bf__ sleep 1)",
+      "Read(//private/tmp/**)"
+    ]
+  }
+}
