@@ -51,7 +51,16 @@ class _HomeScreenState extends State<HomeScreen> {
     final user = AuthenticationScope.userOf(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
+      appBar: AppBar(
+        title: const Text('Home'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Logout',
+            onPressed: () => Dependencies.of(context).authenticationController.logout(),
+          ),
+        ],
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
