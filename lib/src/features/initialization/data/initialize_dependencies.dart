@@ -4,7 +4,7 @@ import 'package:accessandrefreshtoken/src/common/constant/config.dart';
 import 'package:accessandrefreshtoken/src/common/constant/pubspec.yaml.g.dart';
 import 'package:accessandrefreshtoken/src/common/controller/controller_observer.dart';
 import 'package:accessandrefreshtoken/src/common/model/app_metadata.dart';
-import 'package:accessandrefreshtoken/src/common/util/pusher_client.dart';
+import 'package:accessandrefreshtoken/src/common/util/interceptor/authentication_interceptor.dart';
 import 'package:accessandrefreshtoken/src/common/util/screen_util.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/controller/authentication_controller.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/data/authentication_repository.dart';
@@ -67,37 +67,37 @@ final Map<String, _InitializationStep> _initializationSteps = <String, _Initiali
   'Log app open': (_) {},
   'Get remote config': (_) {},
   'Restore settings': (_) {},
+  'Restore token storage': (dependencies) async {
+    final tokenStorage = SharedPrefsTokenStorage(sharedPreferences: dependencies.sharedPreferences);
+    await tokenStorage.restore(); // single disk read at startup
+    dependencies.tokenStorage = tokenStorage;
+  },
   'Initialize Dio': (dependencies) {
-    dependencies.dio =
-        Dio(
-            BaseOptions(
-              baseUrl: Config.apiBaseUrl,
-              connectTimeout: Config.apiConnectTimeout,
-              receiveTimeout: Config.apiReceiveTimeout,
-            ),
-          )
-          ..interceptors.add(
-            InterceptorsWrapper(
-              onRequest: (options, handler) {
-                final token = dependencies.sharedPreferences.getString('auth_token');
-                if (token != null) {
-                  options.headers['Authorization'] = 'Bearer $token';
-                }
-                handler.next(options);
-              },
-            ),
-          );
+    // Create Dio first (bare), then attach interceptor that holds a reference to it.
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: Config.apiBaseUrl,
+        connectTimeout: Config.apiConnectTimeout,
+        receiveTimeout: Config.apiReceiveTimeout,
+      ),
+    );
+    dio.interceptors.add(
+      AuthenticationInterceptor(
+        tokenStorage: dependencies.tokenStorage,
+        dio: dio,
+        // Lambda captures `dependencies` object — authenticationController is
+        // read lazily at runtime (after full init), never during startup.
+        onUnauthenticated: () => dependencies.authenticationController.logout(),
+      ),
+    );
+    dependencies.dio = dio;
   },
-  'Initialize Pusher client': (dependencies) async {
-    final pusherClient = PusherClient(sharedPreferences: dependencies.sharedPreferences);
-    await pusherClient.initilize();
-    dependencies.pusherClient = pusherClient;
-  },
+
   'Prepare authentication controller': (dependencies) {
     dependencies.authenticationController = AuthenticationController(
       repository: AuthenticationRepositoryImpl(
         dio: dependencies.dio,
-        sharedPreferences: dependencies.sharedPreferences,
+        tokenStorage: dependencies.tokenStorage,
       ),
     );
   },

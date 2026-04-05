@@ -1,7 +1,7 @@
-import 'package:control/control.dart';
-import 'package:flutter/foundation.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/data/authentication_repository.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/model/user.dart';
+import 'package:control/control.dart';
+import 'package:flutter/foundation.dart';
 
 /// for more information to change the controller's handler checkout this github page:
 /// https://github.com/PlugFox/control/tree/master/lib/src/concurrency

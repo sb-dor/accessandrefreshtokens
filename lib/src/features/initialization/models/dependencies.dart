@@ -1,5 +1,5 @@
 import 'package:accessandrefreshtoken/src/common/model/app_metadata.dart';
-import 'package:accessandrefreshtoken/src/common/util/pusher_client.dart';
+import 'package:accessandrefreshtoken/src/common/util/interceptor/authentication_interceptor.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/controller/authentication_controller.dart';
 import 'package:accessandrefreshtoken/src/features/initialization/widget/dependencies_scope.dart';
 import 'package:dio/dio.dart';
@@ -24,13 +24,14 @@ class Dependencies {
 
   late final SharedPreferences sharedPreferences;
 
+  /// Token storage — in-memory cache backed by SharedPreferences
+  late final ITokenStorage tokenStorage;
+
   /// App metadata
   late final AppMetadata metadata;
 
   /// Shared Dio HTTP client (base URL + auth interceptor)
   late final Dio dio;
-
-  late final PusherClient pusherClient;
 
   /// Authentication controller
   late final AuthenticationController authenticationController;

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:accessandrefreshtoken/src/common/widget/scaffold_padding.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/controller/authentication_controller.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/widget/authentication_scope.dart';
+import 'package:flutter/material.dart';
 
 /// {@template signin_screen}
 /// Login / Register screen.
@@ -75,7 +75,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         const Icon(Icons.chat_bubble_rounded, size: 72, color: Colors.teal),
                         const SizedBox(height: 20),
                         Text(
-                          'WsChat',
+                          'Token',
                           textAlign: TextAlign.center,
                           style: theme.textTheme.headlineLarge?.copyWith(
                             fontWeight: FontWeight.bold,
