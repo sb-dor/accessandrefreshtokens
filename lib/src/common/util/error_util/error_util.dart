@@ -2,9 +2,9 @@
 
 import 'dart:async';
 
-import 'package:l/l.dart';
 import 'package:accessandrefreshtoken/src/common/util/error_util/platform/error_util_vm.dart'
     if (dart.library.html) 'package:accessandrefreshtoken/src/common/util/error_util/platform/error_util_js.dart';
+import 'package:l/l.dart';
 
 /// Error util.
 abstract final class ErrorUtil {

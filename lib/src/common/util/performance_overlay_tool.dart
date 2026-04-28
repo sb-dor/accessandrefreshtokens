@@ -1,6 +1,6 @@
+import 'package:accessandrefreshtoken/src/common/util/screen_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:ui/ui.dart';
-import 'package:accessandrefreshtoken/src/common/util/screen_util.dart';
 
 class PerformanceOverlayTool extends StatefulWidget {
   const PerformanceOverlayTool({super.key, required this.child, this.enabled = kProfileMode});

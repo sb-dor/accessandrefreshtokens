@@ -1,8 +1,8 @@
-import 'package:octopus/octopus.dart';
-import 'package:ui/ui.dart';
 import 'package:accessandrefreshtoken/src/common/router/routes.dart';
 import 'package:accessandrefreshtoken/src/common/widget/scaffold_padding.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/widget/log_out_button.dart';
+import 'package:octopus/octopus.dart';
+import 'package:ui/ui.dart';
 
 /// {@template profile_screen}
 /// ProfileScreen widget.

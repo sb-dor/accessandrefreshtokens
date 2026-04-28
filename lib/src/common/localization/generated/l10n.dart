@@ -28,9 +28,7 @@ class GeneratedLocalization {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<GeneratedLocalization> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -51,10 +49,7 @@ class GeneratedLocalization {
   }
 
   static GeneratedLocalization? maybeOf(BuildContext context) {
-    return Localizations.of<GeneratedLocalization>(
-      context,
-      GeneratedLocalization,
-    );
+    return Localizations.of<GeneratedLocalization>(context, GeneratedLocalization);
   }
 
   /// `en_US`
@@ -104,12 +99,7 @@ class GeneratedLocalization {
 
   /// `Something went wrong`
   String get somethingWentWrong {
-    return Intl.message(
-      'Something went wrong',
-      name: 'somethingWentWrong',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Something went wrong', name: 'somethingWentWrong', desc: '', args: []);
   }
 
   /// `Error`
@@ -124,12 +114,7 @@ class GeneratedLocalization {
 
   /// `An error has occurred`
   String get anErrorHasOccurred {
-    return Intl.message(
-      'An error has occurred',
-      name: 'anErrorHasOccurred',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('An error has occurred', name: 'anErrorHasOccurred', desc: '', args: []);
   }
 
   /// `An exception has occurred`
@@ -144,102 +129,52 @@ class GeneratedLocalization {
 
   /// `Please try again later.`
   String get tryAgainLater {
-    return Intl.message(
-      'Please try again later.',
-      name: 'tryAgainLater',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Please try again later.', name: 'tryAgainLater', desc: '', args: []);
   }
 
   /// `Invalid format`
   String get invalidFormat {
-    return Intl.message(
-      'Invalid format',
-      name: 'invalidFormat',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Invalid format', name: 'invalidFormat', desc: '', args: []);
   }
 
   /// `Time out exceeded`
   String get timeOutExceeded {
-    return Intl.message(
-      'Time out exceeded',
-      name: 'timeOutExceeded',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Time out exceeded', name: 'timeOutExceeded', desc: '', args: []);
   }
 
   /// `Invalid credentials`
   String get invalidCredentials {
-    return Intl.message(
-      'Invalid credentials',
-      name: 'invalidCredentials',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Invalid credentials', name: 'invalidCredentials', desc: '', args: []);
   }
 
   /// `Unimplemented`
   String get unimplemented {
-    return Intl.message(
-      'Unimplemented',
-      name: 'unimplemented',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Unimplemented', name: 'unimplemented', desc: '', args: []);
   }
 
   /// `Not implemented yet`
   String get notImplementedYet {
-    return Intl.message(
-      'Not implemented yet',
-      name: 'notImplementedYet',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Not implemented yet', name: 'notImplementedYet', desc: '', args: []);
   }
 
   /// `Unsupported operation`
   String get unsupportedOperation {
-    return Intl.message(
-      'Unsupported operation',
-      name: 'unsupportedOperation',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Unsupported operation', name: 'unsupportedOperation', desc: '', args: []);
   }
 
   /// `File system error`
   String get fileSystemException {
-    return Intl.message(
-      'File system error',
-      name: 'fileSystemException',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('File system error', name: 'fileSystemException', desc: '', args: []);
   }
 
   /// `Assertion error`
   String get assertionError {
-    return Intl.message(
-      'Assertion error',
-      name: 'assertionError',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Assertion error', name: 'assertionError', desc: '', args: []);
   }
 
   /// `Bad state error`
   String get badStateError {
-    return Intl.message(
-      'Bad state error',
-      name: 'badStateError',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Bad state error', name: 'badStateError', desc: '', args: []);
   }
 
   /// `Bad request`
@@ -249,12 +184,7 @@ class GeneratedLocalization {
 
   /// `Unauthorized`
   String get unauthorized {
-    return Intl.message(
-      'Unauthorized',
-      name: 'unauthorized',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Unauthorized', name: 'unauthorized', desc: '', args: []);
   }
 
   /// `Forbidden`
@@ -269,42 +199,22 @@ class GeneratedLocalization {
 
   /// `Not acceptable`
   String get notAcceptable {
-    return Intl.message(
-      'Not acceptable',
-      name: 'notAcceptable',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Not acceptable', name: 'notAcceptable', desc: '', args: []);
   }
 
   /// `Request timeout`
   String get requestTimeout {
-    return Intl.message(
-      'Request timeout',
-      name: 'requestTimeout',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Request timeout', name: 'requestTimeout', desc: '', args: []);
   }
 
   /// `Too many requests`
   String get tooManyRequests {
-    return Intl.message(
-      'Too many requests',
-      name: 'tooManyRequests',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Too many requests', name: 'tooManyRequests', desc: '', args: []);
   }
 
   /// `Internal server error`
   String get internalServerError {
-    return Intl.message(
-      'Internal server error',
-      name: 'internalServerError',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Internal server error', name: 'internalServerError', desc: '', args: []);
   }
 
   /// `Bad gateway`
@@ -314,32 +224,17 @@ class GeneratedLocalization {
 
   /// `Service unavailable`
   String get serviceUnavailable {
-    return Intl.message(
-      'Service unavailable',
-      name: 'serviceUnavailable',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Service unavailable', name: 'serviceUnavailable', desc: '', args: []);
   }
 
   /// `Gateway timeout`
   String get gatewayTimeout {
-    return Intl.message(
-      'Gateway timeout',
-      name: 'gatewayTimeout',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Gateway timeout', name: 'gatewayTimeout', desc: '', args: []);
   }
 
   /// `Unknown server error`
   String get unknownServerError {
-    return Intl.message(
-      'Unknown server error',
-      name: 'unknownServerError',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Unknown server error', name: 'unknownServerError', desc: '', args: []);
   }
 
   /// `An unknown error was received from the server`
@@ -454,42 +349,22 @@ class GeneratedLocalization {
 
   /// `Share link`
   String get shareLinkButton {
-    return Intl.message(
-      'Share link',
-      name: 'shareLinkButton',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Share link', name: 'shareLinkButton', desc: '', args: []);
   }
 
   /// `Remove from starred`
   String get removeFromStarredButton {
-    return Intl.message(
-      'Remove from starred',
-      name: 'removeFromStarredButton',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Remove from starred', name: 'removeFromStarredButton', desc: '', args: []);
   }
 
   /// `Add to starred`
   String get addToStarredButton {
-    return Intl.message(
-      'Add to starred',
-      name: 'addToStarredButton',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add to starred', name: 'addToStarredButton', desc: '', args: []);
   }
 
   /// `Move to trash`
   String get moveToTrashButton {
-    return Intl.message(
-      'Move to trash',
-      name: 'moveToTrashButton',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Move to trash', name: 'moveToTrashButton', desc: '', args: []);
   }
 
   /// `Restore`
@@ -514,12 +389,7 @@ class GeneratedLocalization {
 
   /// `Confirm password`
   String get confirmPassword {
-    return Intl.message(
-      'Confirm password',
-      name: 'confirmPassword',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Confirm password', name: 'confirmPassword', desc: '', args: []);
   }
 
   /// `Name`
@@ -534,12 +404,7 @@ class GeneratedLocalization {
 
   /// `Language selection`
   String get languageSelection {
-    return Intl.message(
-      'Language selection',
-      name: 'languageSelection',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Language selection', name: 'languageSelection', desc: '', args: []);
   }
 
   /// `Upgrade`
@@ -559,32 +424,17 @@ class GeneratedLocalization {
 
   /// `Authenticate`
   String get authenticate {
-    return Intl.message(
-      'Authenticate',
-      name: 'authenticate',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Authenticate', name: 'authenticate', desc: '', args: []);
   }
 
   /// `Authenticated`
   String get authenticated {
-    return Intl.message(
-      'Authenticated',
-      name: 'authenticated',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Authenticated', name: 'authenticated', desc: '', args: []);
   }
 
   /// `Authentication`
   String get authentication {
-    return Intl.message(
-      'Authentication',
-      name: 'authentication',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Authentication', name: 'authentication', desc: '', args: []);
   }
 
   /// `Navigation`
@@ -604,12 +454,7 @@ class GeneratedLocalization {
 
   /// `Useful links`
   String get usefulLinks {
-    return Intl.message(
-      'Useful links',
-      name: 'usefulLinks',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Useful links', name: 'usefulLinks', desc: '', args: []);
   }
 
   /// `You will be logged out from your account`
@@ -624,22 +469,12 @@ class GeneratedLocalization {
 
   /// `Current version`
   String get currentVersion {
-    return Intl.message(
-      'Current version',
-      name: 'currentVersion',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Current version', name: 'currentVersion', desc: '', args: []);
   }
 
   /// `Latest version`
   String get latestVersion {
-    return Intl.message(
-      'Latest version',
-      name: 'latestVersion',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Latest version', name: 'latestVersion', desc: '', args: []);
   }
 
   /// `Version`
@@ -679,22 +514,12 @@ class GeneratedLocalization {
 
   /// `Current user`
   String get currentUser {
-    return Intl.message(
-      'Current user',
-      name: 'currentUser',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Current user', name: 'currentUser', desc: '', args: []);
   }
 
   /// `Application version`
   String get applicationVersion {
-    return Intl.message(
-      'Application version',
-      name: 'applicationVersion',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Application version', name: 'applicationVersion', desc: '', args: []);
   }
 
   /// `Application information`
@@ -709,22 +534,12 @@ class GeneratedLocalization {
 
   /// `Connected devices`
   String get conectedDevices {
-    return Intl.message(
-      'Connected devices',
-      name: 'conectedDevices',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Connected devices', name: 'conectedDevices', desc: '', args: []);
   }
 
   /// `Renewal date`
   String get renewalDate {
-    return Intl.message(
-      'Renewal date',
-      name: 'renewalDate',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Renewal date', name: 'renewalDate', desc: '', args: []);
   }
 
   /// `API domain`
@@ -758,8 +573,7 @@ class GeneratedLocalization {
   }
 }
 
-class AppLocalizationDelegate
-    extends LocalizationsDelegate<GeneratedLocalization> {
+class AppLocalizationDelegate extends LocalizationsDelegate<GeneratedLocalization> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
@@ -772,8 +586,7 @@ class AppLocalizationDelegate
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
   @override
-  Future<GeneratedLocalization> load(Locale locale) =>
-      GeneratedLocalization.load(locale);
+  Future<GeneratedLocalization> load(Locale locale) => GeneratedLocalization.load(locale);
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

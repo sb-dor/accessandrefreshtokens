@@ -32,7 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
       final response = await dio.get<Map<String, Object?>>('/api/auth/me');
       final data = response.data!;
       setState(() {
-        _result = 'Success ✓\n\n'
+        _result =
+            'Success ✓\n\n'
             'id: ${data['id']}\n'
             'name: ${data['name']}\n'
             'email: ${data['email']}';
@@ -44,6 +45,12 @@ class _HomeScreenState extends State<HomeScreen> {
     } finally {
       setState(() => _loading = false);
     }
+  }
+
+  Future<void> getUsers() async {
+    final dio = Dependencies.of(context).dio;
+    final response = await dio.get<Map<String, Object?>>('/api/admin/users');
+    print('users: ${response.data}');
   }
 
   @override
@@ -82,6 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     : const Text('Test GET /api/auth/me'),
               ),
+              const SizedBox(height: 10),
+              FilledButton(onPressed: getUsers, child: const Text('Test GET /api/admin/users')),
               if (_result != null) ...[
                 const SizedBox(height: 24),
                 Container(
@@ -93,15 +102,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         : Colors.green.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: _result!.startsWith('Error')
-                          ? Colors.red
-                          : Colors.green,
+                      color: _result!.startsWith('Error') ? Colors.red : Colors.green,
                     ),
                   ),
-                  child: Text(
-                    _result!,
-                    style: const TextStyle(fontFamily: 'monospace'),
-                  ),
+                  child: Text(_result!, style: const TextStyle(fontFamily: 'monospace')),
                 ),
               ],
             ],

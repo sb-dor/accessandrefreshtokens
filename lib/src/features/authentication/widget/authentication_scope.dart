@@ -1,7 +1,7 @@
-import 'package:flutter/widgets.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/controller/authentication_controller.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/model/user.dart';
 import 'package:accessandrefreshtoken/src/features/initialization/models/dependencies.dart';
+import 'package:flutter/widgets.dart';
 
 /// {@template authentication_scope}
 /// AuthenticationScope widget.

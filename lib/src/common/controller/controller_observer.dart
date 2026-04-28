@@ -1,6 +1,6 @@
+import 'package:accessandrefreshtoken/src/common/util/error_util/error_util.dart';
 import 'package:control/control.dart';
 import 'package:l/l.dart';
-import 'package:accessandrefreshtoken/src/common/util/error_util/error_util.dart';
 
 /// Observer for [Controller], react to changes in any controller.
 final class ControllerObserver implements IControllerObserver {

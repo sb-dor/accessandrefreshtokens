@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:accessandrefreshtoken/src/common/util/error_util/error_util.dart';
 import 'package:l/l.dart';
 import 'package:platform_info/platform_info.dart';
-import 'package:accessandrefreshtoken/src/common/util/error_util/error_util.dart';
 
 /// Catch all application errors and logs.
 void appZone(Future<void> Function() fn) => l.capture<void>(

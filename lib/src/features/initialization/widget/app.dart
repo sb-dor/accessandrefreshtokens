@@ -1,13 +1,13 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:octopus/octopus.dart';
 import 'package:accessandrefreshtoken/src/common/constant/config.dart';
 import 'package:accessandrefreshtoken/src/common/localization/localization.dart';
 import 'package:accessandrefreshtoken/src/common/router/router_state_mixin.dart';
 import 'package:accessandrefreshtoken/src/common/util/performance_overlay_tool.dart';
 import 'package:accessandrefreshtoken/src/common/widget/window_scope.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/widget/authentication_scope.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:octopus/octopus.dart';
 
 /// {@template app}
 /// App widget.

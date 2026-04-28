@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:accessandrefreshtoken/src/common/localization/localization.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/widget/authentication_scope.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// {@template log_out_button}
 /// LogOutButton widget

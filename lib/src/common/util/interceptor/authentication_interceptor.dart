@@ -19,10 +19,7 @@ abstract interface class ITokenStorage {
   Future<void> restore();
 
   /// Save both tokens to memory + SharedPreferences (e.g. after login/refresh).
-  Future<void> saveTokens({
-    required String accessToken,
-    required String refreshToken,
-  });
+  Future<void> saveTokens({required String accessToken, required String refreshToken});
 
   /// Clear both tokens from memory + SharedPreferences (e.g. on logout).
   Future<void> clearTokens();
@@ -34,7 +31,7 @@ abstract interface class ITokenStorage {
 
 final class SharedPrefsTokenStorage implements ITokenStorage {
   SharedPrefsTokenStorage({required SharedPreferences sharedPreferences})
-      : _prefs = sharedPreferences;
+    : _prefs = sharedPreferences;
 
   final SharedPreferences _prefs;
 
@@ -58,10 +55,7 @@ final class SharedPrefsTokenStorage implements ITokenStorage {
   }
 
   @override
-  Future<void> saveTokens({
-    required String accessToken,
-    required String refreshToken,
-  }) async {
+  Future<void> saveTokens({required String accessToken, required String refreshToken}) async {
     _accessToken = accessToken;
     _refreshToken = refreshToken;
     await Future.wait([
@@ -74,10 +68,7 @@ final class SharedPrefsTokenStorage implements ITokenStorage {
   Future<void> clearTokens() async {
     _accessToken = null;
     _refreshToken = null;
-    await Future.wait([
-      _prefs.remove(_accessKey),
-      _prefs.remove(_refreshKey),
-    ]);
+    await Future.wait([_prefs.remove(_accessKey), _prefs.remove(_refreshKey)]);
   }
 }
 
@@ -96,9 +87,9 @@ final class AuthenticationInterceptor extends Interceptor {
     required ITokenStorage tokenStorage,
     required Dio dio,
     required void Function() onUnauthenticated,
-  })  : _storage = tokenStorage,
-        _dio = dio,
-        _onUnauthenticated = onUnauthenticated;
+  }) : _storage = tokenStorage,
+       _dio = dio,
+       _onUnauthenticated = onUnauthenticated;
 
   final ITokenStorage _storage;
   final Dio _dio;
@@ -118,10 +109,7 @@ final class AuthenticationInterceptor extends Interceptor {
   }
 
   @override
-  Future<void> onError(
-    DioException err,
-    ErrorInterceptorHandler handler,
-  ) async {
+  Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode != 401) {
       handler.next(err);
       return;

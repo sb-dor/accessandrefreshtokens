@@ -1,8 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
-import 'package:octopus/octopus.dart';
-import 'package:platform_info/platform_info.dart';
 import 'package:accessandrefreshtoken/src/common/util/app_zone.dart';
 import 'package:accessandrefreshtoken/src/common/util/error_util/error_util.dart';
 import 'package:accessandrefreshtoken/src/common/widget/app_error.dart' deferred as app_error;
@@ -10,6 +7,9 @@ import 'package:accessandrefreshtoken/src/features/initialization/data/initializ
     deferred as initialization;
 import 'package:accessandrefreshtoken/src/features/initialization/widget/app.dart';
 import 'package:accessandrefreshtoken/src/features/settings/widget/settings_scope.dart';
+import 'package:flutter/widgets.dart';
+import 'package:octopus/octopus.dart';
+import 'package:platform_info/platform_info.dart';
 
 void main() => appZone(() async {
   // Splash screen

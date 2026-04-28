@@ -5,11 +5,7 @@ import 'package:dio/dio.dart';
 abstract interface class IAuthenticationRepository {
   Future<User> login({required String email, required String password});
 
-  Future<User> register({
-    required String name,
-    required String email,
-    required String password,
-  });
+  Future<User> register({required String name, required String email, required String password});
 
   Future<void> logout();
 
@@ -23,11 +19,9 @@ abstract interface class IAuthenticationRepository {
 }
 
 class AuthenticationRepositoryImpl implements IAuthenticationRepository {
-  AuthenticationRepositoryImpl({
-    required final Dio dio,
-    required final ITokenStorage tokenStorage,
-  }) : _dio = dio,
-       _tokenStorage = tokenStorage;
+  AuthenticationRepositoryImpl({required final Dio dio, required final ITokenStorage tokenStorage})
+    : _dio = dio,
+      _tokenStorage = tokenStorage;
 
   final Dio _dio;
   final ITokenStorage _tokenStorage;
@@ -125,11 +119,8 @@ class AuthenticationFakeRepositoryImpl implements IAuthenticationRepository {
       Future.value(const User(id: -1));
 
   @override
-  Future<User> register({
-    required String name,
-    required String email,
-    required String password,
-  }) => Future.value(const User(id: -1));
+  Future<User> register({required String name, required String email, required String password}) =>
+      Future.value(const User(id: -1));
 
   @override
   Future<void> logout() => Future.value();

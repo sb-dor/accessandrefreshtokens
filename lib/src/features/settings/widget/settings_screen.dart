@@ -1,6 +1,6 @@
-import 'package:ui/ui.dart';
 import 'package:accessandrefreshtoken/src/common/widget/common_header.dart';
 import 'package:accessandrefreshtoken/src/common/widget/scaffold_padding.dart';
+import 'package:ui/ui.dart';
 
 /// {@template settings_screen}
 /// SettingsScreen widget.
