@@ -753,10 +753,10 @@ packages:
     dependency: "direct dev"
     description:
       name: pubspec_generator
-      sha256: "2c7f710ce8f8ad238b25c5d902d237ca2f928be8f005889ef2ce479d893deccd"
+      sha256: "5e18eeb224f468eab48a310ec47fc71dc3bd16363fd8f8f582e96fb4586b3c4c"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.0"
+    version: "5.0.1"
   pubspec_parse:
     dependency: transitive
     description:
