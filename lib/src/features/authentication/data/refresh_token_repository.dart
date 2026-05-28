@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:accessandrefreshtoken/src/common/constant/config.dart';
+import 'package:accessandrefreshtoken/src/common/util/api_client.dart';
 import 'package:accessandrefreshtoken/src/common/util/interceptor/authentication_interceptor.dart';
 import 'package:http/http.dart' as http_package;
 
@@ -32,6 +33,16 @@ final class RefreshTokenRepositoryImpl implements IRefreshTokenRepository {
       body: jsonEncode({'refreshToken': refreshToken}),
       headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
     );
+
+    if (response.statusCode == 401 || response.statusCode == 403) {
+      throw APIClientException$Authorization(
+        code: 'unauthorized_error',
+        message: 'User is not authorized.',
+        statusCode: response.statusCode,
+        error: null,
+        data: null,
+      );
+    }
 
     final data = jsonDecode(response.body) as Map<String, Object?>;
 

@@ -127,6 +127,7 @@ class AuthenticationInterceptor {
             return await innerHandler(retryRequest, context, onServerErrorMessage);
           } on APIClientException$Authorization {
             // refresh failed or retry also got 401 → session truly expired
+            l.d('refresh token expired');
             _onExpired();
             rethrow;
           }
