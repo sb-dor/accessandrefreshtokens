@@ -2,8 +2,8 @@ import 'package:accessandrefreshtoken/src/common/model/app_metadata.dart';
 import 'package:accessandrefreshtoken/src/common/util/interceptor/authentication_interceptor.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/controller/authentication_controller.dart';
 import 'package:accessandrefreshtoken/src/features/initialization/widget/dependencies_scope.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// {@template dependencies}
@@ -30,8 +30,8 @@ class Dependencies {
   /// App metadata
   late final AppMetadata metadata;
 
-  /// Shared Dio HTTP client (base URL + auth interceptor)
-  late final Dio dio;
+  /// Shared HTTP client with auth interception.
+  late final http.Client httpClient;
 
   /// Authentication controller
   late final AuthenticationController authenticationController;

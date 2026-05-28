@@ -5,9 +5,9 @@ class User {
   const User({required this.id, this.name, this.email});
 
   factory User.fromMap(Map<String, Object?> map) =>
-      User(id: map['id'] as int, name: map['name'] as String?, email: map['email'] as String?);
+      User(id: map['id'] as String, name: map['name'] as String?, email: map['email'] as String?);
 
-  final int id;
+  final String id;
   final String? name;
   final String? email;
 
@@ -28,7 +28,7 @@ class User {
   @override
   String toString() => 'User{id: $id, name: $name, email: $email}';
 
-  User copyWith({int? id, ValueGetter<String?>? name, ValueGetter<String?>? email}) => User(
+  User copyWith({String? id, ValueGetter<String?>? name, ValueGetter<String?>? email}) => User(
     id: id ?? this.id,
     name: name != null ? name() : this.name,
     email: email != null ? email() : this.email,

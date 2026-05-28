@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:accessandrefreshtoken/src/common/constant/config.dart';
 import 'package:accessandrefreshtoken/src/common/constant/pubspec.yaml.g.dart';
 import 'package:accessandrefreshtoken/src/common/controller/controller_observer.dart';
 import 'package:accessandrefreshtoken/src/common/model/app_metadata.dart';
@@ -11,7 +10,7 @@ import 'package:accessandrefreshtoken/src/features/authentication/data/authentic
 import 'package:accessandrefreshtoken/src/features/initialization/data/platform/platform_initialization.dart';
 import 'package:accessandrefreshtoken/src/features/initialization/models/dependencies.dart';
 import 'package:control/control.dart';
-import 'package:dio/dio.dart';
+import 'package:http_interceptor/http_interceptor.dart' as http;
 import 'package:l/l.dart';
 import 'package:platform_info/platform_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -72,32 +71,23 @@ final Map<String, _InitializationStep> _initializationSteps = <String, _Initiali
     await tokenStorage.restore(); // single disk read at startup
     dependencies.tokenStorage = tokenStorage;
   },
-  'Initialize Dio': (dependencies) {
-    // Create Dio first (bare), then attach interceptor that holds a reference to it.
-    final dio = Dio(
-      BaseOptions(
-        baseUrl: Config.apiBaseUrl,
-        connectTimeout: Config.apiConnectTimeout,
-        receiveTimeout: Config.apiReceiveTimeout,
-      ),
+  'Initialize Api Client': (dependencies) {
+    final authenticationInterceptor = AuthenticationInterceptor(
+      tokenStorage: dependencies.tokenStorage,
+      onUnauthenticated: () async => dependencies.authenticationController.setIdleState(),
     );
-    dio.interceptors.add(
-      AuthenticationInterceptor(
-        tokenStorage: dependencies.tokenStorage,
-        dio: dio,
-        // Lambda captures `dependencies` object — authenticationController is
-        // read lazily at runtime (after full init), never during startup.
-        onUnauthenticated: () => dependencies.authenticationController.logout(),
-      ),
+
+    dependencies.httpClient = http.InterceptedClient.build(
+      interceptors: [authenticationInterceptor],
+      retryPolicy: authenticationInterceptor,
     );
-    dependencies.dio = dio;
   },
 
   'Prepare authentication controller': (dependencies) {
     dependencies.authenticationController = AuthenticationController(
       repository: AuthenticationRepositoryImpl(
-        dio: dependencies.dio,
         tokenStorage: dependencies.tokenStorage,
+        client: dependencies.httpClient,
       ),
     );
   },

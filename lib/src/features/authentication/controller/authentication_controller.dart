@@ -114,4 +114,6 @@ class AuthenticationController extends StateController<AuthenticationState>
       setState(AuthenticationState.authenticated(user));
     }
   });
+
+  void setIdleState() => setState(const AuthenticationState.idle());
 }
