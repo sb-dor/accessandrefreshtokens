@@ -82,7 +82,7 @@ dependencies:
   http_interceptor: ^3.0.0
 
   # 
-  shared_preferences: ^2.3.0
+  shared_preferences: ^2.5.5
 
   # UI and Widgets
   cupertino_icons: ^1.0.9
