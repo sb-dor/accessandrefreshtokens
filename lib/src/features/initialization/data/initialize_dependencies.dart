@@ -1,16 +1,18 @@
 import 'dart:async';
 
+import 'package:accessandrefreshtoken/src/common/constant/config.dart';
 import 'package:accessandrefreshtoken/src/common/constant/pubspec.yaml.g.dart';
 import 'package:accessandrefreshtoken/src/common/controller/controller_observer.dart';
 import 'package:accessandrefreshtoken/src/common/model/app_metadata.dart';
+import 'package:accessandrefreshtoken/src/common/util/api_client.dart';
 import 'package:accessandrefreshtoken/src/common/util/interceptor/authentication_interceptor.dart';
 import 'package:accessandrefreshtoken/src/common/util/screen_util.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/controller/authentication_controller.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/data/authentication_repository.dart';
+import 'package:accessandrefreshtoken/src/features/authentication/data/refresh_token_repository.dart';
 import 'package:accessandrefreshtoken/src/features/initialization/data/platform/platform_initialization.dart';
 import 'package:accessandrefreshtoken/src/features/initialization/models/dependencies.dart';
 import 'package:control/control.dart';
-import 'package:http_interceptor/http_interceptor.dart' as http;
 import 'package:l/l.dart';
 import 'package:platform_info/platform_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -71,23 +73,24 @@ final Map<String, _InitializationStep> _initializationSteps = <String, _Initiali
     await tokenStorage.restore(); // single disk read at startup
     dependencies.tokenStorage = tokenStorage;
   },
-  'Initialize Api Client': (dependencies) {
-    final authenticationInterceptor = AuthenticationInterceptor(
-      tokenStorage: dependencies.tokenStorage,
-      onUnauthenticated: () async => dependencies.authenticationController.setIdleState(),
-    );
 
-    dependencies.httpClient = http.InterceptedClient.build(
-      interceptors: [authenticationInterceptor],
-      retryPolicy: authenticationInterceptor,
-    );
-  },
+  'Initialize Api Client': (dependencies) => dependencies.apiClient = ApiClient(
+    baseUrl: Config.apiBaseUrl,
+    middlewares: [
+      AuthenticationInterceptor(
+        authenticationHeaders: AuthenticationHeaders(tokenStorage: dependencies.tokenStorage),
+        onTokenRefreshed: () =>
+            RefreshTokenRepositoryImpl(tokenStorage: dependencies.tokenStorage).refreshToken(),
+        onExpired: () => dependencies.authenticationController.setIdleState(),
+      ).call,
+    ],
+  ),
 
   'Prepare authentication controller': (dependencies) {
     dependencies.authenticationController = AuthenticationController(
       repository: AuthenticationRepositoryImpl(
+        client: dependencies.apiClient,
         tokenStorage: dependencies.tokenStorage,
-        client: dependencies.httpClient,
       ),
     );
   },

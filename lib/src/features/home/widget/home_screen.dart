@@ -1,4 +1,3 @@
-import 'package:accessandrefreshtoken/src/common/constant/config.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/widget/authentication_scope.dart';
 import 'package:accessandrefreshtoken/src/features/initialization/models/dependencies.dart';
 import 'package:flutter/material.dart';
@@ -18,14 +17,18 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _loading = false;
 
   Future<void> getPizzas() async {
-    if (_loading) return;
-    _loading = true;
-    setState(() {});
-    final httpClient = Dependencies.of(context).httpClient;
-    final response = await httpClient.get(Uri.parse('${Config.apiBaseUrl}/pizzas/'));
-    print('pizzas: ${response.body}');
-    _loading = false;
-    setState(() {});
+    try {
+      if (_loading) return;
+      _loading = true;
+      setState(() {});
+      final httpClient = Dependencies.of(context).apiClient;
+      final response = await httpClient.get('/pizzas/');
+      print('pizzas: ${response.body}');
+    } catch (_) {
+    } finally {
+      _loading = false;
+      setState(() {});
+    }
   }
 
   @override

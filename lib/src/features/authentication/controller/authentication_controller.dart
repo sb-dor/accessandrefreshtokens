@@ -115,5 +115,8 @@ class AuthenticationController extends StateController<AuthenticationState>
     }
   });
 
-  void setIdleState() => setState(const AuthenticationState.idle());
+  void setIdleState() {
+    // clear tokens
+    setState(const AuthenticationState.idle());
+  }
 }

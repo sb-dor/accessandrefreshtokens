@@ -1,9 +1,9 @@
 import 'package:accessandrefreshtoken/src/common/model/app_metadata.dart';
+import 'package:accessandrefreshtoken/src/common/util/api_client.dart';
 import 'package:accessandrefreshtoken/src/common/util/interceptor/authentication_interceptor.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/controller/authentication_controller.dart';
 import 'package:accessandrefreshtoken/src/features/initialization/widget/dependencies_scope.dart';
 import 'package:flutter/widgets.dart';
-import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// {@template dependencies}
@@ -22,6 +22,7 @@ class Dependencies {
   Widget inject({required Widget child, Key? key}) =>
       DependenciesScope(dependencies: this, key: key, child: child);
 
+  //
   late final SharedPreferences sharedPreferences;
 
   /// Token storage — in-memory cache backed by SharedPreferences
@@ -31,7 +32,7 @@ class Dependencies {
   late final AppMetadata metadata;
 
   /// Shared HTTP client with auth interception.
-  late final http.Client httpClient;
+  late final ApiClient apiClient;
 
   /// Authentication controller
   late final AuthenticationController authenticationController;
