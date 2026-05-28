@@ -122,8 +122,9 @@ class AuthenticationInterceptor {
               rethrow;
             }
             l.d('new token value: $newToken');
-            request.headers['Authorization'] = 'Bearer ${newToken.accessToken}';
-            return await innerHandler(request, context, onServerErrorMessage);
+            final retryRequest = request.copy()
+              ..headers['Authorization'] = 'Bearer ${newToken.accessToken}';
+            return await innerHandler(retryRequest, context, onServerErrorMessage);
           } on APIClientException$Authorization {
             // refresh failed or retry also got 401 → session truly expired
             _onExpired();

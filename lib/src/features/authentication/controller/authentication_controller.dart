@@ -27,6 +27,8 @@ sealed class AuthenticationState {
     final Authentication$AuthenticatedState state => state.user,
     _ => null,
   };
+
+  bool get isIdle => this is Authentication$IdleState;
 }
 
 final class Authentication$IdleState extends AuthenticationState {

@@ -72,7 +72,30 @@ extension type ApiClientMiddlewareWrapper._(ApiClientMiddleware _fn) {
 
 /// An HTTP request with a JSON-encoded body.
 extension type APIClientRequest(http_package.BaseRequest _request)
-    implements http_package.BaseRequest {}
+    implements http_package.BaseRequest {
+  APIClientRequest copy() {
+    final request = _request;
+    if (request is http_package.Request) {
+      return APIClientRequest(
+        http_package.Request(request.method, request.url)
+          ..bodyBytes = request.bodyBytes
+          ..encoding = request.encoding
+          ..headers.addAll(request.headers)
+          ..followRedirects = request.followRedirects
+          ..maxRedirects = request.maxRedirects
+          ..persistentConnection = request.persistentConnection,
+      );
+    }
+
+    return APIClientRequest(
+      http_package.Request(request.method, request.url)
+        ..headers.addAll(request.headers)
+        ..followRedirects = request.followRedirects
+        ..maxRedirects = request.maxRedirects
+        ..persistentConnection = request.persistentConnection,
+    );
+  }
+}
 
 /// An HTTP response with a JSON-encoded body.
 final class APIClientResponse {

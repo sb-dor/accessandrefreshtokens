@@ -1,6 +1,9 @@
+import 'package:accessandrefreshtoken/src/common/router/routes.dart';
+import 'package:accessandrefreshtoken/src/features/authentication/controller/authentication_controller.dart';
 import 'package:accessandrefreshtoken/src/features/authentication/widget/authentication_scope.dart';
 import 'package:accessandrefreshtoken/src/features/initialization/models/dependencies.dart';
 import 'package:flutter/material.dart';
+import 'package:octopus/octopus.dart';
 
 /// {@template home_screen}
 /// HomeScreen — main authenticated screen.
@@ -15,6 +18,31 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _loading = false;
+
+  late final AuthenticationController _authenticationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _authenticationController = Dependencies.of(context).authenticationController;
+    _authenticationController.addListener(_authenticationListener);
+  }
+
+  @override
+  void dispose() {
+    _authenticationController.removeListener(_authenticationListener);
+    super.dispose();
+  }
+
+  void _authenticationListener() {
+    if (_authenticationController.state.isIdle) {
+      context.octopus.setState(
+        (stack) => stack
+          ..clear()
+          ..add(Routes.signin.node()),
+      );
+    }
+  }
 
   Future<void> getPizzas() async {
     try {
