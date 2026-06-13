@@ -114,7 +114,7 @@ dev_dependencies:
   mocktail: ^1.0.4
 
   # Code generation
-  build_runner: ^2.5.4
+  build_runner: ^2.15.0
   pubspec_generator: ^5.0.0
   flutter_gen_runner: ^5.9.0
   # dart run flutter_launcher_icons -f flutter_launcher_icons.yaml
